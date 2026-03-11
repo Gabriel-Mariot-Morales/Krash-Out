@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.Flow
 interface UserStatsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrUpdateUserStats(stats: UserStatsEntity)
+    fun insertOrUpdateUserStats(stats: UserStatsEntity)
 
     @Query("SELECT * FROM user_stats WHERE id = 1")
     fun getUserStats(): Flow<UserStatsEntity?>
 
     @Query("UPDATE user_stats SET virtualCoins = virtualCoins + :amount WHERE id = 1")
-    suspend fun addCoins(amount: Int)
+    fun addCoins(amount: Int)
 }

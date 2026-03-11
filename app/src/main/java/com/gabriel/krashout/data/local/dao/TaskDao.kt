@@ -13,10 +13,10 @@ import kotlinx.coroutines.flow.Flow
 interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTask(task: TaskEntity)
+    fun insertTask(task: TaskEntity)
 
     @Update
-    suspend fun updateTask(task: TaskEntity)
+    fun updateTask(task: TaskEntity)
 
     @Query("SELECT * FROM tasks ORDER BY assignedDateTimestamp ASC")
     fun getAllTasks(): Flow<List<TaskEntity>>
