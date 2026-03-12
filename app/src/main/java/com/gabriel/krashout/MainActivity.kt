@@ -42,10 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         // Configuramos la lista reciclable con nuestro adaptador
         taskAdapter = TaskAdapter { task ->
-            // Accion que ocurre cuando el usuario marca una tarea como completada
-            val completedTask = task.copy(isCompleted = true)
-            viewModel.updateTask(completedTask)
-            viewModel.addVirtualCoins(10)
+            // Accion que ocurre cuando el usuario marca una tarea como completada y aplica las matematicas
+            viewModel.completeTask(task)
         }
 
         // Le decimos a la lista que se ordene de forma vertical de arriba a abajo usando el binding
