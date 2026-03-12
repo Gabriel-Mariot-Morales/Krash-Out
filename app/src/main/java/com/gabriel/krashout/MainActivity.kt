@@ -76,43 +76,45 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Funcion que muestra un menu emergente para que el usuario introduzca los datos de su nueva tarea
+    // Funcion que muestra un menu emergente para que el usuario introduzca los datos de su nueva tarea
+    // Funcion que muestra un menu emergente para que el usuario introduzca los datos de su nueva tarea
     private fun showAddTaskDialog() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_task, null)
-        val editTitle = dialogView.findViewById<EditText>(R.id.editTaskTitle)
-        val editDescription = dialogView.findViewById<EditText>(R.id.editTaskDescription)
+        // Inflamos el diseño del menu usando su propia clase de View Binding
+        val dialogBinding = com.gabriel.krashout.databinding.DialogAddTaskBinding.inflate(layoutInflater)
 
-        // Enlazamos los 5 botones de dificultad
-        val btnVp = dialogView.findViewById<android.widget.Button>(R.id.btnDiffVeryEasy)
-        val btnEasy = dialogView.findViewById<android.widget.Button>(R.id.btnDiffEasy)
-        val btnMed = dialogView.findViewById<android.widget.Button>(R.id.btnDiffMedium)
-        val btnHard = dialogView.findViewById<android.widget.Button>(R.id.btnDiffHard)
-        val btnVh = dialogView.findViewById<android.widget.Button>(R.id.btnDiffVeryHard)
-
-        val buttons = listOf(btnVp, btnEasy, btnMed, btnHard, btnVh)
+        // Agrupamos los 5 textos de la barra de dificultad para manejarlos mas facilmente
+        val textViews = listOf(
+            dialogBinding.tvDiffVeryEasy,
+            dialogBinding.tvDiffEasy,
+            dialogBinding.tvDiffMedium,
+            dialogBinding.tvDiffHard,
+            dialogBinding.tvDiffVeryHard
+        )
         var selectedXp = 0
 
-        // Funcion interna que oscurece los botones no seleccionados para destacar el elegido
-        fun updateButtonSelection(selectedButton: android.widget.Button, xp: Int) {
+        // Funcion interna que ilumina el seleccionado y apaga los demas con transparencia
+        fun updateSegmentSelection(selectedTextView: android.widget.TextView, xp: Int) {
             selectedXp = xp
-            buttons.forEach { it.alpha = 0.3f } // Volvemos todos semitransparentes
-            selectedButton.alpha = 1.0f // Hacemos solido solo el que se ha tocado
+            textViews.forEach { it.alpha = 0.3f } // Volvemos todos semitransparentes (apagados)
+            selectedTextView.alpha = 1.0f // Hacemos solido y brillante solo el que se ha tocado
         }
 
         // Por defecto, ponemos todos semitransparentes hasta que el usuario elija
-        buttons.forEach { it.alpha = 0.3f }
+        textViews.forEach { it.alpha = 0.3f }
 
-        // Asignamos la puntuacion a cada boton al ser pulsado
-        btnVp.setOnClickListener { updateButtonSelection(btnVp, 20) }
-        btnEasy.setOnClickListener { updateButtonSelection(btnEasy, 40) }
-        btnMed.setOnClickListener { updateButtonSelection(btnMed, 60) }
-        btnHard.setOnClickListener { updateButtonSelection(btnHard, 80) }
-        btnVh.setOnClickListener { updateButtonSelection(btnVh, 100) }
+        // Asignamos la puntuacion y el brillo a cada segmento al ser pulsado
+        dialogBinding.tvDiffVeryEasy.setOnClickListener { updateSegmentSelection(dialogBinding.tvDiffVeryEasy, 20) }
+        dialogBinding.tvDiffEasy.setOnClickListener { updateSegmentSelection(dialogBinding.tvDiffEasy, 40) }
+        dialogBinding.tvDiffMedium.setOnClickListener { updateSegmentSelection(dialogBinding.tvDiffMedium, 60) }
+        dialogBinding.tvDiffHard.setOnClickListener { updateSegmentSelection(dialogBinding.tvDiffHard, 80) }
+        dialogBinding.tvDiffVeryHard.setOnClickListener { updateSegmentSelection(dialogBinding.tvDiffVeryHard, 100) }
 
-        AlertDialog.Builder(this)
-            .setView(dialogView)
+        // Creamos la ventana emergente y le incrustamos la raiz visual de nuestro binding
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
             .setPositiveButton("Añadir") { _, _ ->
-                val title = editTitle.text.toString()
-                val description = editDescription.text.toString()
+                val title = dialogBinding.editTaskTitle.text.toString()
+                val description = dialogBinding.editTaskDescription.text.toString()
 
                 if (title.isNotEmpty() && selectedXp > 0) {
                     val newTask = TaskEntity(
@@ -124,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                     )
                     viewModel.addTask(newTask)
                 } else {
-                    Toast.makeText(this, "Falta el título o elegir una dificultad", Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(this, "Falta el título o elegir una dificultad", android.widget.Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("Cancelar", null)
