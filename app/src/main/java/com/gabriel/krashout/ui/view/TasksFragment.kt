@@ -14,7 +14,7 @@ import com.gabriel.krashout.data.local.AppDatabase
 import com.gabriel.krashout.data.local.entity.TaskEntity
 import com.gabriel.krashout.data.repository.KrashOutRepository
 import com.gabriel.krashout.databinding.DialogAddTaskBinding
-import com.gabriel.krashout.databinding.FragmentTaskBinding
+import com.gabriel.krashout.databinding.FragmentTasksBinding
 import com.gabriel.krashout.ui.adapter.TaskAdapter
 import com.gabriel.krashout.ui.viewmodel.MainViewModel
 import com.gabriel.krashout.ui.viewmodel.MainViewModelFactory
@@ -22,23 +22,22 @@ import kotlinx.coroutines.launch
 
 class TasksFragment : Fragment() {
 
-    // View Binding especifico para Fragmentos
-    private var _binding: FragmentTaskBinding? = null
+    // View Binding en plural restaurado
+    private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: MainViewModel
     private lateinit var taskAdapter: TaskAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentTaskBinding.inflate(inflater, container, false)
+        _binding = FragmentTasksBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Instanciamos la base de datos y el ViewModel.
-        // Usamos requireActivity() para que todos los fragmentos compartan el mismo cerebro.
+        // Instanciamos la base de datos y el ViewModel
         val database = AppDatabase.getDatabase(requireContext())
         val repository = KrashOutRepository(database.taskDao(), database.userStatsDao())
         val factory = MainViewModelFactory(repository)
@@ -95,8 +94,7 @@ class TasksFragment : Fragment() {
         dialogBinding.tvDiffHard.setOnClickListener { updateSegmentSelection(dialogBinding.tvDiffHard, 80) }
         dialogBinding.tvDiffVeryHard.setOnClickListener { updateSegmentSelection(dialogBinding.tvDiffVeryHard, 100) }
 
-        // Usamos requireContext() para lanzar el Dialog desde el Fragmento
-        AlertDialog.Builder(requireContext())
+        androidx.appcompat.app.AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
             .setPositiveButton("Añadir") { _, _ ->
                 val title = dialogBinding.editTaskTitle.text.toString()
@@ -118,7 +116,6 @@ class TasksFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Limpiamos el binding para evitar fugas de memoria
         _binding = null
     }
 }
