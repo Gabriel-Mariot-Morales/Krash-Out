@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="sea_background">#E0F2F1</color>
+    <color name="deep_ocean">#006064</color>
+    <color name="shark_blue">#00838F</color>
+    <color name="wave_cyan">#00BCD4</color>
+    <color name="foam_white">#FFFFFF</color>
+    <color name="text_dark_water">#00363A</color>
 </resources>
