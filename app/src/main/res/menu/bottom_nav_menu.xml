@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/shopFragment"
+        android:title="Tienda"
+        android:icon="@android:drawable/ic_menu_manage"/>
+
+    <item
+        android:id="@+id/routineFragment"
+        android:title="Rutinas"
+        android:icon="@android:drawable/ic_menu_agenda"/>
+
+    <item
+        android:id="@+id/tasksFragment"
+        android:title="Tareas"
+        android:icon="@android:drawable/ic_menu_today"/>
+
+    <item
+        android:id="@+id/avatarFragment"
+        android:title="Avatar"
+        android:icon="@android:drawable/ic_menu_camera"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Perfil"
+        android:icon="@android:drawable/ic_menu_info_details"/>
+</menu>

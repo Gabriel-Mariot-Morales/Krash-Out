@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tasksFragment">
+
+    <fragment android:id="@+id/shopFragment" android:name="com.gabriel.krashout.ui.view.ShopFragment" android:label="Tienda" />
+    <fragment android:id="@+id/routineFragment" android:name="com.gabriel.krashout.ui.view.RoutineFragment" android:label="Rutinas" />
+
+    <fragment android:id="@+id/tasksFragment" android:name="com.gabriel.krashout.ui.view.TasksFragment" android:label="Tareas" >
+        <layout android:layout="@layout/fragment_tasks" />
+    </fragment>
+
+    <fragment android:id="@+id/avatarFragment" android:name="com.gabriel.krashout.ui.view.AvatarFragment" android:label="Avatar" />
+    <fragment android:id="@+id/profileFragment" android:name="com.gabriel.krashout.ui.view.ProfileFragment" android:label="Perfil" />
+
+</navigation>
