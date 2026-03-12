@@ -6,4 +6,10 @@
     <color name="wave_cyan">#00BCD4</color>
     <color name="foam_white">#FFFFFF</color>
     <color name="text_dark_water">#00363A</color>
+
+    <color name="diff_very_easy">#B3E5FC</color>
+    <color name="diff_easy">#4FC3F7</color>
+    <color name="diff_medium">#03A9F4</color>
+    <color name="diff_hard">#0288D1</color>
+    <color name="diff_very_hard">#01579B</color>
 </resources>

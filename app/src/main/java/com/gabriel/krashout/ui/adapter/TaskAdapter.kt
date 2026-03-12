@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +22,25 @@ class TaskAdapter(private val onTaskCompleted: (TaskEntity) -> Unit) : ListAdapt
         val xpTextView: TextView = itemView.findViewById(R.id.textTaskXp)
         val checkBox: CheckBox = itemView.findViewById(R.id.checkboxTask)
 
+        // Variable que enlaza con la nueva franja de color del XML
+        val difficultyStripe: View = itemView.findViewById(R.id.viewDifficultyStripe)
+
         // Metodo que rellena la tarjeta visual con los datos reales de la tarea
         fun bind(task: TaskEntity) {
             titleTextView.text = task.title
             descTextView.text = task.description
             xpTextView.text = "+${task.xpReward} XP"
+
+            // Asigna el color a la franja dependiendo de los puntos de experiencia que tenga la tarea
+            val colorResId = when(task.xpReward) {
+                20 -> R.color.diff_very_easy
+                40 -> R.color.diff_easy
+                60 -> R.color.diff_medium
+                80 -> R.color.diff_hard
+                100 -> R.color.diff_very_hard
+                else -> R.color.wave_cyan
+            }
+            difficultyStripe.setBackgroundColor(ContextCompat.getColor(itemView.context, colorResId))
 
             // Quitamos momentaneamente la escucha de la casilla para que no salte por error al reciclar la tarjeta
             checkBox.setOnCheckedChangeListener(null)

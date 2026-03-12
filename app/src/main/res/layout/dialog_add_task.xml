@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/foam_white"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Nueva Misión"
+        android:textColor="@color/deep_ocean"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTaskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/wave_cyan"
+        android:hint="Título de la misión"
+        android:inputType="textCapSentences"
+        android:textColor="@color/text_dark_water"
+        android:textColorHint="@color/shark_blue" />
+
+    <EditText
+        android:id="@+id/editTaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/wave_cyan"
+        android:hint="Descripción detallada"
+        android:inputType="textCapSentences|textMultiLine"
+        android:textColor="@color/text_dark_water"
+        android:textColorHint="@color/shark_blue" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecciona la dificultad:"
+        android:textColor="@color/shark_blue"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <Button
+            android:id="@+id/btnDiffVeryEasy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/diff_very_easy"
+            android:text="20"
+            android:textColor="#00363A" />
+
+        <Button
+            android:id="@+id/btnDiffEasy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/diff_easy"
+            android:text="40"
+            android:textColor="#00363A" />
+
+        <Button
+            android:id="@+id/btnDiffMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/diff_medium"
+            android:text="60"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnDiffHard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/diff_hard"
+            android:text="80"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnDiffVeryHard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/diff_very_hard"
+            android:text="100"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</LinearLayout>
