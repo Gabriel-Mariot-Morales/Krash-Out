@@ -21,6 +21,17 @@ class MainViewModel(private val repository: KrashOutRepository) : ViewModel() {
     // Expone el flujo constante con los datos del perfil del usuario
     val userProfile: Flow<UserStatsEntity?> = repository.getUserProfile()
 
+    // Bloque de inicializacion que se ejecuta al crear el ViewModel
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getUserProfile().collect { profile ->
+                if (profile == null) {
+                    repository.initializeProfileIfNeeded()
+                }
+            }
+        }
+    }
+
     // Ejecuta la insercion de una nueva tarea aislada en un hilo secundario (IO)
     fun addTask(task: TaskEntity) {
         viewModelScope.launch(Dispatchers.IO) {

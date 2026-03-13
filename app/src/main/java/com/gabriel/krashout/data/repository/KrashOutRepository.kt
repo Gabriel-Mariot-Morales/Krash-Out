@@ -53,4 +53,17 @@ class KrashOutRepository(
     fun addVirtualCoins(amount: Int) {
         userStatsDao.addCoins(amount)
     }
+
+    // Crea un perfil de usuario inicial en el nivel 1 si la base de datos esta vacia
+    fun initializeProfileIfNeeded() {
+        val defaultProfile = UserStatsEntity(
+            id = 1,
+            totalXp = 0,
+            currentLevel = 1,
+            virtualCoins = 0,
+            dailyXpAccumulated = 0,
+            lastLoginTimestamp = System.currentTimeMillis()
+        )
+        userStatsDao.insertOrUpdateUserStats(defaultProfile)
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.gabriel.krashout.data.local.dao.ShopDao
 import com.gabriel.krashout.data.local.dao.TaskDao
 import com.gabriel.krashout.data.local.dao.UserStatsDao
 import com.gabriel.krashout.data.local.entity.RoutineTemplateEntity
@@ -19,7 +20,7 @@ import com.gabriel.krashout.data.local.entity.UserStatsEntity
         RoutineTemplateEntity::class,
         ShopItemEntity::class
     ],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -29,6 +30,9 @@ abstract class AppDatabase : RoomDatabase() {
 
     // Metodo para acceder a las operaciones de las tareas
     abstract fun taskDao(): TaskDao
+
+    // Metodo para acceder a las operaciones de la tienda
+    abstract fun shopDao(): ShopDao
 
     companion object {
         @Volatile
@@ -41,7 +45,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "krashout_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
