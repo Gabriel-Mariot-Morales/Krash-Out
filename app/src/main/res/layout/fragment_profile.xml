@@ -1,6 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/sea_background"
+    tools:context=".ui.view.ProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/headerProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/deep_ocean"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Capitán"
+            android:textColor="@color/wave_cyan"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:id="@+id/textProfileLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Nivel 1"
+            android:textColor="@color/foam_white"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/progressXp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="32dp"
+            android:max="100"
+            android:progress="20"
+            android:progressTint="@color/wave_cyan"
+            android:backgroundTint="@color/shark_blue"/>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/foam_white"
+        app:layout_constraintTop_toBottomOf="@+id/headerProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estadísticas de Bitácora"
+                android:textColor="@color/deep_ocean"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Misiones completadas:"
+                    android:textColor="@color/text_dark_water"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/textTotalTasks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/deep_ocean"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Experiencia Total (XP):"
+                    android:textColor="@color/text_dark_water"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/textTotalXp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/deep_ocean"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonBackup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Exportar Copia de Seguridad"
+        android:textColor="@color/foam_white"
+        app:backgroundTint="@color/shark_blue"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_menu_save"
+        app:iconTint="@color/foam_white"
+        app:layout_constraintTop_toBottomOf="@+id/cardStats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
